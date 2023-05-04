@@ -4,6 +4,8 @@ nav
       a href="/" Home
     - if @current_account
       li
+        a href="/account/#{@current_account['username']}" Account
+      li
         a href="/auth/logout" Logout
     - else
       li
