@@ -17,7 +17,7 @@ module Candyland
 
       raise(BadRequestError) unless response.code == 201
 
-      response.parse['attributes']
+      response.parse['data']['attributes']
     end
   end
 end
