@@ -6,6 +6,7 @@ require_relative './app'
 module Candyland
   # Web controller for Candyland API
   class App < Roda
+    # rubocop:disable Metrics/BlockLength
     route('auth') do |routing|
       routing.is 'register' do
         # GET /auth/register
@@ -62,5 +63,6 @@ module Candyland
         end
       end
     end
+    # rubocop:enable Metrics/BlockLength
   end
 end

@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 # Web
 gem 'puma'
-gem "rack-session"
+gem 'rack-session'
 gem 'roda'
 gem 'slim'
 
