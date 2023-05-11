@@ -35,7 +35,7 @@ task :audit do
 end
 
 desc 'Checks for release'
-task :release => [:spec, :style, :audit] do
+task :release => %i[spec style audit] do
   puts "\nReady for release!"
 end
 
