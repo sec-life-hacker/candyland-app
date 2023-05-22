@@ -5,7 +5,9 @@ require 'http'
 module Candyland
   # Returns an authenticated user, or nil
   class RegisterAccount
-    class BadRequestError < StandardError; end
+    class InvalideAccount < StandardError;
+      def message = 'This account can no longer be created: please start again'
+    end
 
     def initialize(config)
       @config = config

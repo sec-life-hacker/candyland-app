@@ -5,7 +5,7 @@ require 'slim'
 require 'rack/session'
 
 module Candyland
-  # Base class for Credence Web Application
+  # Base class for Candyland Web Application
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/presentation/views'
     plugin :assets, css: 'style.css', path: 'app/presentation/assets'
@@ -13,15 +13,9 @@ module Candyland
     plugin :multi_route
     plugin :flash
 
-    ONE_MONTH = 30 * 24 * 60 * 60
-
-    use Rack::Session::Cookie,
-        expire_after: ONE_MONTH,
-        secret: config.SESSION_SECRET
-
     route do |routing|
       response['Content-Type'] = 'text/html; charset=utf-8'
-      @current_account = session[:current_account]
+      @current_account = CurrentSession.new(session).current_account
 
       routing.public
       routing.assets
