@@ -1,0 +1,19 @@
+div class="row" style="vertical-align: bottom;"
+  div class="col-xs-9"
+    h3 Locations
+  div class="col-xs-3"
+    button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLocationModal" + New Location
+table class="table"
+  thead
+    tr
+      th Location name
+      th Coordinate
+  tbody
+    - locations.all.each do |loc|
+      tr
+        td 
+          a href="/locations/#{loc.id}" #{loc.name}
+          td 
+            a href="https://www.google.com/maps/search/?api=1&query=#{loc.coordinate}" #{loc.coordinate}
+
+include :location_new_partial
