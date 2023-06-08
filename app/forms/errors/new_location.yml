@@ -1,0 +1,4 @@
+en:
+  errors:
+    name: 'Location name must be filled'
+    description: 'Location description must be filled'
