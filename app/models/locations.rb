@@ -9,7 +9,7 @@ module Candyland
 
     def initialize(locations_list)
       @all = locations_list.map do |location|
-        Location.new(location['data'])
+        Location.new(location)
       end
     end
   end

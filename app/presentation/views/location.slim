@@ -1,0 +1,30 @@
+div class="row" style="vertical-align: bottom;"
+  div class="col-xs-9"
+    h2 
+      == "#{location.name}"
+  div class="col-xs-3"
+    button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEventModal" + New Event
+  dl
+    div class="row"
+      div class="col-xs-3"
+        dt Location Link:
+      div class="col-xs-9"
+        dd class="blockquote"
+          a href="https://www.google.com/maps/search/?api=1&query=#{location.coordinate}" #{location.coordinate}
+div class="row"
+  div class="col-lg-9"
+    div class="row"
+      table class="table"
+        thead
+          tr
+            th Title
+            th Description
+        tbody
+          - location.events.each do |event|
+            tr
+              td 
+                a href="/events/#{event.id}"
+                  == "#{event.title}"
+              td #{event.description}
+
+include :event_new_partial

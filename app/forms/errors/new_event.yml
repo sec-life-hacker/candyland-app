@@ -1,0 +1,5 @@
+en:
+  errors:
+    title: 'Event title must be filled'
+    description: 'Event description must be filled'
+    time: 'Event time must be filled'

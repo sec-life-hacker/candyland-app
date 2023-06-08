@@ -11,6 +11,50 @@ module Candyland
         routing.redirect '/auth/login' unless @current_account.logged_in?
         @locations_route = '/locations'
 
+        routing.on String do |location_id|
+          @location_route = "#{@locations_route}/#{location_id}"
+
+          routing.on 'events' do
+            @events_route = "#{@location_route}/events"
+
+            # POST /locations/[location_id]/events
+            routing.post do
+              event_data = Form::NewEvent.new.call(routing.params)
+              if event_data.failure?
+                flash[:error] = Form.message_values(event_data)
+                routing.halt
+              end
+
+              CreateNewEvent.new(App.config).call(
+                current_account: @current_account,
+                location_id:,
+                event_data: event_data.to_h
+              )
+
+              flash[:notice] = 'Add events to this new location'
+            rescue StandardError => e
+              puts "FAILURE Creating Event: #{e.inspect}"
+              flash[:error] = 'Could not create event'
+            ensure
+              routing.redirect @location_route
+            end
+          end
+
+          # GET /locations/[location_id]
+          routing.get do
+            location_info = GetLocation.new(App.config).call(@current_account, location_id)
+            location = Location.new(location_info)
+            view :location, locals: {
+              current_account: @current_account, location: location
+            }
+          rescue StandardError => e
+            puts "#{e.inspect}\n#{e.backtrace}"
+            flash[:error] = 'Location not found'
+            routing.redirect @locations_route
+          end
+        end
+
+        # GET /locations
         routing.get do
           locations_list = GetAllLocations.new(App.config).call(@current_account)
           locations = Locations.new(locations_list)
@@ -19,6 +63,7 @@ module Candyland
           }
         end
 
+        # POST /locations
         routing.post do
           location_data = Form::NewLocation.new.call(routing.params)
 

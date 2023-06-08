@@ -5,9 +5,9 @@ module Candyland
                 :location, :curator, :participants # detail
 
     def initialize(event_info)
-      process_attributes(proj_info['attributes'])
-      process_relationships(proj_info['relationships'])
-      process_policies(proj_info['policies'])
+      process_attributes(event_info['attributes'])
+      process_relationships(event_info['relationships'])
+      process_policies(event_info['policies'])
     end
 
     def process_attributes(attributes)
