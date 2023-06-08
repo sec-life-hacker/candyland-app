@@ -2,10 +2,11 @@
 module Candyland
   class Event
     attr_reader :id, :title, :description, :time, # basic info
-                :location, :curator, :participants # detail
+                :location, :curator, :participants, :policies # detail
 
     def initialize(event_info)
       process_attributes(event_info['attributes'])
+      process_hidden_infos(event_info['hidden_infos'])
       process_relationships(event_info['relationships'])
       process_policies(event_info['policies'])
     end
@@ -15,6 +16,12 @@ module Candyland
       @title = attributes['title']
       @description = attributes['description']
       @time = attributes['time']
+    end
+
+    def process_hidden_infos(hidden_infos)
+      return unless hidden_infos
+
+      @time = hidden_infos['time']
     end
 
     def process_relationships(relationships)

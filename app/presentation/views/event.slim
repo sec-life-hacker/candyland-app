@@ -1,0 +1,15 @@
+div class="row" style="vertical-align: bottom;"
+  div class="col-xs-9"
+    h2 
+      == "#{event.title}"
+  dl
+    div class="row"
+      div class="col-xs-3"
+      dt Description
+      dd "#{event.description}"
+      - if event.policies.can_view_detail
+        div class="col-xs-3"
+          dt Time "#{event.time}"
+      - else
+        div class="col-xs-3"
+          dt Participate to see hidden informations
