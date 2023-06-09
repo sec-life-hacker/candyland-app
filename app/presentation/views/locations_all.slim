@@ -1,9 +1,9 @@
-div class="row" style="vertical-align: bottom;"
-  div class="col-xs-9"
+div.row style="vertical-align: bottom;"
+  div.col-xs-9
     h3 Locations
-  div class="col-xs-3"
-    button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLocationModal" + New Location
-table class="table"
+  div.col-xs-3
+    button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#newLocationModal" | + New Location
+table.table
   thead
     tr
       th Location name
@@ -12,8 +12,8 @@ table class="table"
     - locations.all.each do |loc|
       tr
         td 
-          a href="/locations/#{loc.id}" #{loc.name}
-          td 
-            a href="https://www.google.com/maps/search/?api=1&query=#{loc.coordinate}" #{loc.coordinate}
+          a.link-href href="/locations/#{loc.id}" = loc.name
+        td 
+          a.link-href href="https://www.google.com/maps/search/?api=1&query=#{loc.coordinate}" = loc.coordinate
 
 include :location_new_partial

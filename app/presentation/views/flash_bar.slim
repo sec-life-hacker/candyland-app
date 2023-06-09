@@ -1,6 +1,6 @@
 - if flash[:error]
-  div class="alert alert-danger"  id="flash_bar_danger"
-    = flash[:error]
+  div.alert.alert-danger#flash_bar_danger
+    span.flash-text = flash[:error]
 - if flash[:notice]
-  div class="alert alert-success"  id="flash_bar_success"
-    = flash[:notice]
+  div.alert.alert-success#flash_bar_success
+    span.flash-text = flash[:notice]

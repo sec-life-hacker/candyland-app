@@ -2,13 +2,13 @@ h2 Login
 form.mb-3(action="/auth/login" method="post")
   .mb-3
     label.form-label(for="username") Username:
-    input.form-control.input-field(type="text" id="username")
+    input.form-control.input-field(type="text" id="username" name="username")
   .mb-3
     label.form-label(for="password") Password:
-    input.form-control.input-field(type="password" id="password")
+    input.form-control.input-field(type="password" id="password" name="password")
   button.btn.btn-primary.btn-login(type="submit") <span>Login</span>
 hr.divider
 div.text-center
-  a.btn.btn-secondary.github-button(href="#")
+  a.btn.btn-secondary.github-button(href="#{gh_oauth_url}")
     i.fab.fa-github
     | Login with GitHub
