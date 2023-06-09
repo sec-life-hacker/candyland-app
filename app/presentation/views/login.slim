@@ -1,11 +1,14 @@
-h1 Login Page
-- if flash[:error]
-  p class="error" = flash[:error]
-form action="/auth/login" method="post"
-  label for="username" Username:
-  input type="text" name="username" id="username"
-  br
-  label for="password" Password:
-  input type="password" name="password" id="password"
-  br
-  input type="submit" value="Log in"
+h2 Login
+form.mb-3(action="/auth/login" method="post")
+  .mb-3
+    label.form-label(for="username") Username:
+    input.form-control.input-field(type="text" id="username")
+  .mb-3
+    label.form-label(for="password") Password:
+    input.form-control.input-field(type="password" id="password")
+  button.btn.btn-primary.btn-login(type="submit") <span>Login</span>
+hr.divider
+div.text-center
+  a.btn.btn-secondary.github-button(href="#")
+    i.fab.fa-github
+    | Login with GitHub
