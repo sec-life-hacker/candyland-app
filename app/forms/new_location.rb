@@ -10,6 +10,7 @@ module Candyland
       params do
         required(:name).filled
         required(:description).filled
+        required(:coordinate).filled
       end
     end
   end
