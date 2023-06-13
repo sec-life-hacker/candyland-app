@@ -31,7 +31,9 @@ module Candyland
     ONE_MONTH = 30 * 24 * 60 * 60
 
     configure do
+      SecureSession.setup(ENV['REDIS_TLS_URL']) # REDIS_TLS_URL used again below
       SecureMessage.setup(ENV.delete('MSG_KEY'))
+      SignedMessage.setup(config)
     end
 
     configure :production do
