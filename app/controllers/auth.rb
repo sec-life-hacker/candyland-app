@@ -13,8 +13,8 @@ module Candyland
 
       "#{url}?client_id=#{client_id}&scope=#{scope}"
     end
+
     route('auth') do |routing|
-      @oauth_callback = '/auth/sso_callback'
       @login_route = '/auth/login'
       routing.is 'login' do
         # GET /auth/login
