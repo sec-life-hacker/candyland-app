@@ -4,7 +4,7 @@ require 'http'
 
 module Candyland
   # add participant to an event
-  class AddParticipant
+  class RemoveParticipant
     def initialize(config)
       @config = config
     end
@@ -14,10 +14,9 @@ module Candyland
     end
 
     def call(current_account:, event_id:, participant_data:)
-      puts 'CALLED'
       request_url = "#{api_url}/events/#{event_id}/participants"
       response = HTTP.auth("Bearer #{current_account.auth_token}")
-                    .put(request_url, json: participant_data)
+                    .delete(request_url, json: participant_data)
 
       response.code == 200 ? JSON.parse(response.body.to_s) : raise
     end

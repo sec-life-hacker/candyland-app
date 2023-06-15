@@ -15,6 +15,11 @@ div class="row" style="vertical-align: bottom;"
           dt Participate to see hidden informations
           form action="/events/#{event.id}/participate" method="POST"
             button type="submit" Participate
+      - if event.policies.can_reveal
+        div class="col-xs-3"
+          dt Reveal Event
+          form action="/events/#{event.id}/reveal" method="POST"
+            button type="submit" Reveal
 
 div class="row"
   - if event.policies.can_add_participants
@@ -22,6 +27,7 @@ div class="row"
       div class="form-group"
         label for='participant_email_input' Participant Email
         input type="text" name="participant_email" id="participant_email_input" class="form-control" placeholder="Enter email to invite"
+        input type='hidden' name='action' value='add'
       button type='submit' id='add_participant_submit' class='submit' value='submit' class="btn btn-primary" Add
   - if event.policies.can_view_detail
     table class="table"
@@ -35,4 +41,8 @@ div class="row"
               = participant.username
             - if event.policies.can_remove_participants
               td
+                form action="/events/#{event.id}/participants" method="POST"
+                  input type="hidden" name="participant_email" value="#{participant.email}" class="form-control"
+                  input type="hidden" name="action" value="remove" 
+                  button type="submit" Remove
 

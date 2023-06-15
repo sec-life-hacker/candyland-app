@@ -18,7 +18,6 @@ module Candyland
           routing.get do
             event_info = GetEvent.new(App.config).call(@current_account, event_id)
             event = Event.new(event_info)
-            puts event.policies.to_json
             view :event, locals: {
               current_account: @current_account, event: event
             }
@@ -28,6 +27,21 @@ module Candyland
             routing.redirect @locations_route
           end
 
+          routing.on 'reveal' do
+            routing.post do
+              event_info = RevealEvent.new(App.config).call(@current_account, event_id)
+              event = Event.new(event_info)
+              view :event, locals: {
+                current_account: @current_account, event: event
+              }
+
+            rescue StandardError => e
+              puts "#{e.inspect}\n#{e.backtrace}"
+              flash[:error] = 'Failed when revealing event'
+              routing.redirect @event_route
+            end
+          end
+
           routing.on 'participate' do
             routing.post do
               ParticipateEvent.new(App.config).call(@current_account, event_id)
@@ -35,22 +49,45 @@ module Candyland
 
             rescue StandardError => e
               puts "#{e.inspect}\n#{e.backtrace}"
-              flash[:error] = 'Event not found'
-              routing.redirect @locations_route
+              flash[:error] = 'Failed when participating event'
+              routing.redirect @event_route
             end
           end
 
           routing.on 'participants' do
             routing.post do
-              ParticipateEvent.new(App.config).call(@current_account, event_id)
+              action = routing.params['action']
+              puts routing.params.to_json
+
+              participant_data = Form::Participant.new.call(routing.params)
+              if participant_data.failure?
+                flash[:error] = Form.validation_errors(participant_data)
+                routing.halt
+              end
+              
+
+              task_list = {
+                'add' => { service: AddParticipant,
+                           message: 'Added participant to envent' },
+                'remove' => { service: RemoveParticipant,
+                              message: 'Removed participant to envent' }
+              }
+
+              task = task_list[action]
+              task[:service].new(App.config).call(
+                current_account: @current_account,
+                event_id: event_id,
+                participant_data: participant_data.to_h,
+              )
 
               routing.redirect @event_route
-              flash[:notice] = 'Event Created'
+              flash[:notice] = task[:message]
             rescue StandardError => e
-              puts "FAILURE adding participant: #{e.inspect}"
+              puts "FAILURE updating participants: #{e.inspect}"
+              puts e.backtrace
               flash[:error] = 'Could not add participant'
             ensure
-              routing.redirect @events_route
+              routing.redirect @event_route
             end
           end
         end
