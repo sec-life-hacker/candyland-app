@@ -18,6 +18,7 @@ module Candyland
           routing.get do
             event_info = GetEvent.new(App.config).call(@current_account, event_id)
             event = Event.new(event_info)
+            puts event.policies.to_json
             view :event, locals: {
               current_account: @current_account, event: event
             }
@@ -109,6 +110,7 @@ module Candyland
         # POST /events
         routing.post do
           event_data = Form::NewEvent.new.call(routing.params)
+          puts event_data.to_h.to_json
           if event_data.failure?
             flash[:error] = Form.message_values(event_data)
             routing.halt
