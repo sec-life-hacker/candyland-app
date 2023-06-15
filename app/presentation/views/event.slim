@@ -1,48 +1,52 @@
-div class="row" style="vertical-align: bottom;"
-  div class="col-xs-9"
-    h2 
-      == "#{event.title}"
+div.row.style-bottom
+  div.col-xs-9
+    h2 = event.title
   dl
-    div class="row"
-      div class="col-xs-3"
+    div.row
+      div.col-xs-3
         dt Description
-        dd "#{event.description}"
+        dd = event.description
       - if event.policies.can_view_detail
-        div class="col-xs-3"
+        div.col-xs-3
           dt Time
-          dd "#{event.time}"
+          dd = event.time
       - if event.policies.can_participate
-        div class="col-xs-3"
+        div.col-xs-3
           dt Participate to see hidden information
           form action="/events/#{event.id}/participate" method="POST"
-            button type="submit" Participate
+            button.btn.btn-primary.btn-block type="submit" Participate
       - if event.policies.can_reveal
-        div class="col-xs-3"
+        div.col-xs-3
           dt Reveal Event
           form action="/events/#{event.id}/reveal" method="POST"
-            button type="submit" Reveal
+            button.btn.btn-primary.btn-block type="submit" Reveal
 
-div class="row"
+div.row
   - if event.policies.can_add_participants
-    form action="/events/#{event.id}/participants" method="POST"
-      div class="form-group"
-        label for="participant_email_input" Participant Email
-        input type="text" name="participant_email" id="participant_email_input" class="form-control" placeholder="Enter email to invite"
-        input type="hidden" name="action" value="add"
-      button type="submit" id="add_participant_submit" class="submit btn btn-primary" Add
+    div.col-xs-12
+      form action="/events/#{event.id}/participants" method="POST"
+        div.form-group.row
+          div.col-xs-9.col-md-6
+            label for="participant_email_input" Participant Email:
+            input#participant_email_input.form-control type="text" name="participant_email" placeholder="Enter email to invite"
+          div.col-xs-3.col-md-6
+            button#add_participant_submit.submit.btn.btn-primary.btn-block type="submit" Add Participant
+            input type="hidden" name="action" value="add"
+
+div.row
   - if event.policies.can_view_detail
-    table class="table"
+    table.table.table-striped
       thead
         tr
           th Participants
+          th
       tbody
         - event.participants.each do |participant|
           tr
-            td 
-              = participant.username
+            td = participant.username
             - if event.policies.can_remove_participants
               td
                 form action="/events/#{event.id}/participants" method="POST"
                   input type="hidden" name="participant_email" value="#{participant.email}" class="form-control"
-                  input type="hidden" name="action" value="remove" 
-                  button type="submit" Remove
+                  input type="hidden" name="action" value="remove"
+                  button.submit.btn.btn-danger.btn-block.btn-remove-participant type="submit" Remove

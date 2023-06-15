@@ -253,3 +253,14 @@ section {
   background-color: #3fdef1;
   border-color: #3fdef1;
 }
+
+button.btn-danger {
+  background-color: #aa8efa;
+  border-color: #aa8efa;
+  color: #ffffff;
+}
+
+button.btn-danger:hover {
+  background-color: #7269fe;
+  border-color: #7269fe;
+}
