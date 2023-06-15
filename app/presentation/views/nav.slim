@@ -9,6 +9,8 @@ nav.navbar.navbar-expand-lg
           a.nav-link(href="/")Home
         li.nav-item
           a.nav-link(href="/locations")Locations
+        li.nav-item
+          a.nav-link(href="/events")Events
         - if @current_account.logged_in?
           li.nav-item
             a.nav-link(href="/account/#{@current_account.username}")Account

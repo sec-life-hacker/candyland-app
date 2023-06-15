@@ -14,32 +14,6 @@ module Candyland
         routing.on String do |location_id|
           @location_route = "#{@locations_route}/#{location_id}"
 
-          routing.on 'events' do
-            @events_route = "#{@location_route}/events"
-
-            # POST /locations/[location_id]/events
-            routing.post do
-              event_data = Form::NewEvent.new.call(routing.params)
-              if event_data.failure?
-                flash[:error] = Form.message_values(event_data)
-                routing.halt
-              end
-
-              CreateNewEvent.new(App.config).call(
-                current_account: @current_account,
-                location_id:,
-                event_data: event_data.to_h
-              )
-
-              flash[:notice] = 'Add events to this new location'
-            rescue StandardError => e
-              puts "FAILURE Creating Event: #{e.inspect}"
-              flash[:error] = 'Could not create event'
-            ensure
-              routing.redirect @location_route
-            end
-          end
-
           # GET /locations/[location_id]
           routing.get do
             location_info = GetLocation.new(App.config).call(@current_account, location_id)

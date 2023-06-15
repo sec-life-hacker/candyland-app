@@ -13,8 +13,8 @@ module Candyland
       @config.API_URL
     end
 
-    def call(current_account:, location_id:, event_data:)
-      config_url = "#{api_url}/locations/#{location_id}/events"
+    def call(current_account:, event_data:)
+      config_url = "#{api_url}/events"
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                     .post(config_url, json: event_data)
 

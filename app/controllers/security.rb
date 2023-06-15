@@ -12,7 +12,7 @@ module Candyland
     plugin :environments
     plugin :multi_route
 
-    FONT_SRC = %w[https://cdn.jsdelivr.net].freeze
+    FONT_SRC = %w[https://cdn.jsdelivr.net https://fonts.googleapis.com].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net].freeze
     STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com].freeze
 

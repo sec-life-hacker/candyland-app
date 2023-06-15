@@ -1,0 +1,19 @@
+div.row style="vertical-align: bottom;"
+  div.col-xs-9
+    h3 Events
+  div.col-xs-3
+    button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#newEventModal" | + New Event
+table.table
+  thead
+    tr
+      th Event title
+      th Event description
+  tbody
+    - events.all.each do |event|
+      tr
+        td 
+          a.link-href href="/events/#{event.id}" = event.title
+        td
+          = event.description
+
+include :event_new_partial
