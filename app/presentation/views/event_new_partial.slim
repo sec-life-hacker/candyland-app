@@ -5,7 +5,7 @@ div id="newEventModal" class="modal fade" role="dialog"
         h4 class="modal-title" New Event
         button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
       div class="modal-body"
-        form role="form" action="/locations/#{location.id}/events" method='post' id='new-event-form'
+        form role="form" action="/events" method='post' id='new-event-form'
           div class="form-group"
             label for='title_input' Event Title:
             input type='text' name='title' id='title_input' class="form-control" placeholder="title is required"
@@ -15,5 +15,15 @@ div id="newEventModal" class="modal fade" role="dialog"
           div class="form-group"
             label for='time' Event Time:
             input type='text' name='time' id='time_input' class="form-control" placeholder="time is required"
+          div class="form-group"
+            label for="location_id" Event Location:
+            - if defined?(locations)
+              select name="location_id" id="location_id_input" class="form-control"
+                option value="" Select Location
+                - locations.all.each do |location|
+                  option value="#{location.id}" = location.name
+            - else
+              input type='text' name='location_id' id='location_id_input' class="form-control" value="#{location.id}" disabled=true hidden=true
+
           button type='submit' id='registration-form-submit' class='submit' value='submit' class="btn btn-primary" Create
           button type="button" class="btn btn-secondary" data-bs-dismiss="modal" Cancel

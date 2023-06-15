@@ -22,13 +22,13 @@ module Candyland
       return unless hidden_infos
 
       @time = hidden_infos['time']
+      @location = Location.new(hidden_infos['location'])
     end
 
     def process_relationships(relationships)
       return unless relationships
 
       @curator = Account.new(['curator'])
-      @location = Location.new(relationships['location'])
       @participants = process_participants(relationships['participants'])
     end
 

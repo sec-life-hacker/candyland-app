@@ -11,6 +11,7 @@ module Candyland
         required(:title).filled
         required(:description).filled
         required(:time).filled
+        required(:location_id).filled
       end
     end
   end

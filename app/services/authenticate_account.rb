@@ -18,6 +18,7 @@ module Candyland
       response = HTTP.post("#{@config.API_URL}/auth/authenticate",
                            json: SignedMessage.sign(credentials))
 
+      puts response.code
       raise(UnauthorizedError) if response.code == 403
       raise(ApiServerError) if response.code != 200
 
