@@ -5,14 +5,15 @@ div class="row" style="vertical-align: bottom;"
   dl
     div class="row"
       div class="col-xs-3"
-      dt Description
-      dd "#{event.description}"
+        dt Description
+        dd "#{event.description}"
       - if event.policies.can_view_detail
         div class="col-xs-3"
-          dt Time "#{event.time}"
+          dt Time
+          dd "#{event.time}"
       - if event.policies.can_participate
         div class="col-xs-3"
-          dt Participate to see hidden informations
+          dt Participate to see hidden information
           form action="/events/#{event.id}/participate" method="POST"
             button type="submit" Participate
       - if event.policies.can_reveal
@@ -25,10 +26,10 @@ div class="row"
   - if event.policies.can_add_participants
     form action="/events/#{event.id}/participants" method="POST"
       div class="form-group"
-        label for='participant_email_input' Participant Email
+        label for="participant_email_input" Participant Email
         input type="text" name="participant_email" id="participant_email_input" class="form-control" placeholder="Enter email to invite"
-        input type='hidden' name='action' value='add'
-      button type='submit' id='add_participant_submit' class='submit' value='submit' class="btn btn-primary" Add
+        input type="hidden" name="action" value="add"
+      button type="submit" id="add_participant_submit" class="submit btn btn-primary" Add
   - if event.policies.can_view_detail
     table class="table"
       thead
@@ -45,4 +46,3 @@ div class="row"
                   input type="hidden" name="participant_email" value="#{participant.email}" class="form-control"
                   input type="hidden" name="action" value="remove" 
                   button type="submit" Remove
-

@@ -1,50 +1,53 @@
+/* Body Background */
 body {
-  background-color: #000;
-  color: #fff;
+  background-color: #191919;
+  color: #ffffff;
   font-family: 'Arial', sans-serif;
 }
 
+/* Container Margin */
 .container {
   margin-top: 40px;
 }
 
+/* Section Styles */
 section {
   padding: 20px;
-  background-color: #ff00ff;
+  background-color: #aa8efa;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/*Nav Bar*/
+/* Nav Bar */
 .navbar {
   font-family: Arial, sans-serif;
-  background-color: #ff00ff;
-  border-bottom: 4px solid #00ff00;
+  background-color: #7269fe;
+  border-bottom: 4px solid #3fdef1;
 }
 
 .navbar-brand {
   font-size: 24px;
-  color: #ffff00;
+  color: #aa8efa;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .navbar-toggler-icon {
-  background-color: #00ff00;
+  background-color: #3fdef1;
 }
 
 .nav-link {
-  color: #00ff00;
+  color: #3fdef1;
   transition: color 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: #ff00ff;
+  color: #7269fe;
 }
 
 .collapse.navbar-collapse {
-  background-color: #000;
+  background-color: #191919;
   max-width: 25%;
 }
 
@@ -58,13 +61,13 @@ section {
 
 @media (max-width: 767px) {
   .navbar-collapse {
-    background-color: #000;
+    background-color: #191919;
     padding: 10px;
   }
 
   .navbar-toggler {
-    border: 2px solid #00ff00;
-    background-color: #ff00ff;
+    border: 2px solid #3fdef1;
+    background-color: #aa8efa;
   }
 
   .navbar-nav {
@@ -76,18 +79,18 @@ section {
   }
 }
 
-/*Login */
+/* Login Button */
 .btn-login {
-  background-color: #ff00ff;
-  border-color: #ff00ff;
-  box-shadow: 0px 6px 12px rgba(255, 0, 255, 0.4);
+  background-color: #7269fe;
+  border-color: #7269fe;
+  box-shadow: 0px 6px 12px rgba(114, 105, 254, 0.4);
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .btn-login:hover {
-  background-color: #00ff00;
-  border-color: #00ff00;
-  box-shadow: 0px 8px 20px rgba(0, 255, 0, 0.6);
+  background-color: #3fdef1;
+  border-color: #3fdef1;
+  box-shadow: 0px 8px 20px rgba(63, 222, 241, 0.6);
 }
 
 .btn-login span {
@@ -103,7 +106,7 @@ section {
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(45deg, #ff00ff, #00ff00);
+  background: linear-gradient(45deg, #7269fe, #3fdef1);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease-in-out;
@@ -114,22 +117,22 @@ section {
   transform: scaleX(1);
 }
 
-/*Register*/
+/* Register Button */
 .btn-register {
-  background-color: #00ff00;
-  border-color: #00ff00;
+  background-color: #3fdef1;
+  border-color: #3fdef1;
   transition: background-color 0.3s ease-in-out;
 }
 
 .btn-register:hover {
-  background-color: #ff00ff;
-  border-color: #ff00ff;
+  background-color: #7269fe;
+  border-color: #7269fe;
 }
 
-/*Flash Bar*/
+/* Flash Bar Styles */
 #flash_bar_danger {
-  background-color: #ffcc00;
-  color: #00ffff;
+  background-color: #cccccc; /* Light grey */
+  color: #7269fe; /* Magenta */
   padding: 10px;
   text-align: center;
   font-size: 24px;
@@ -139,8 +142,8 @@ section {
 }
 
 #flash_bar_success {
-  background-color: #00ff00;
-  color: #ff00ff;
+  background-color: #191919; /* Black */
+  color: #aa8efa; /* Light Purple */
   padding: 10px;
   text-align: center;
   font-size: 24px;
@@ -164,8 +167,7 @@ section {
   }
 }
 
-/*Locations*/
-
+/* Locations */
 .row {
   display: flex;
   align-items: flex-end;
@@ -173,15 +175,15 @@ section {
 }
 
 .col-xs-9 h3 {
-  color: #FFFFFF; /* White */
+  color: #ffffff;
   font-size: 24px;
   margin: 0;
 }
 
 .col-xs-3 button {
-  background-color: #FF0099; /* Hot pink */
+  background-color: #7269fe;
   border: none;
-  color: #FFFFFF; /* White */
+  color: #ffffff;
   font-size: 16px;
   padding: 10px;
   border-radius: 5px;
@@ -189,15 +191,15 @@ section {
 }
 
 .table {
-  background-color: #FFFFFF; /* White */
+  background-color: #ffffff;
   border-collapse: collapse;
   width: 100%;
   max-width: 600px;
 }
 
 .table thead th {
-  background-color: #FF0099; /* Hot pink */
-  color: #FFFFFF; /* White */
+  background-color: #7269fe;
+  color: #ffffff;
   font-weight: bold;
   padding: 10px;
 }
@@ -207,11 +209,47 @@ section {
 }
 
 .link-href {
-  color: #FF0099; /* Hot pink */
+  color: #7269fe;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .link-href:hover {
-  color: #FF99CC; /* Light pink */
+  color: #aa8efa;
+}
+
+/* Modal Styles */
+.modal {
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: #7269fe;
+  color: #ffffff;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal-title {
+  color: #ffffff;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.modal-footer {
+  background-color: #ffffff;
+  border-radius: 0 0 10px 10px;
+}
+
+.modal-footer button {
+  background-color: #7269fe;
+  border-color: #7269fe;
+  color: #ffffff;
+}
+
+.modal-footer button:hover {
+  background-color: #3fdef1;
+  border-color: #3fdef1;
 }

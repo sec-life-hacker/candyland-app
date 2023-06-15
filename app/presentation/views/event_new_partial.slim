@@ -1,29 +1,29 @@
-div id="newEventModal" class="modal fade" role="dialog"
-  div class="modal-dialog"
-    div class="modal-content"
-      div class="modal-header"
-        h4 class="modal-title" New Event
-        button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-      div class="modal-body"
-        form role="form" action="/events" method='post' id='new-event-form'
-          div class="form-group"
-            label for='title_input' Event Title:
-            input type='text' name='title' id='title_input' class="form-control" placeholder="title is required"
-          div class="form-group"
-            label for='description' Event Description:
-            input type='text' name='description' id='description_input' class="form-control" placeholder="description is required"
-          div class="form-group"
-            label for='time' Event Time:
-            input type='text' name='time' id='time_input' class="form-control" placeholder="time is required"
-          div class="form-group"
-            label for="location_id" Event Location:
+div#newEventModal.modal.fade role="dialog"
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        h4.modal-title New Event
+        button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+      div.modal-body
+        form#new-event-form role="form" action="/events" method="post"
+          div.form-group
+            label for="title_input" Event Title:
+            input#title_input.form-control type="text" name="title" placeholder="Title is required"
+          div.form-group
+            label for="description_input" Event Description:
+            input#description_input.form-control type="text" name="description" placeholder="Description is required"
+          div.form-group
+            label for="time_input" Event Time:
+            input#time_input.form-control type="text" name="time" placeholder="Time is required"
+          div.form-group
+            label for="location_id_input" Event Location:
             - if defined?(locations)
-              select name="location_id" id="location_id_input" class="form-control"
+              select#location_id_input.form-control name="location_id"
                 option value="" Select Location
                 - locations.all.each do |location|
                   option value="#{location.id}" = location.name
-            - if defined?(location)
-              input type='hidden' name='location_id' id='location_id_input' value="#{location.id}"
+            - elsif defined?(location)
+              input#location_id_input.form-control type="hidden" name="location_id" value="#{location.id}"
 
-          button type='submit' id='registration-form-submit' class='submit' value='submit' class="btn btn-primary" Create
-          button type="button" class="btn btn-secondary" data-bs-dismiss="modal" Cancel
+          button#registration-form-submit.btn.btn-primary type="submit" Create
+          button.btn.btn-secondary type="button" data-bs-dismiss="modal" Cancel

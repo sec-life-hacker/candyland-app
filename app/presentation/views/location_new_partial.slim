@@ -1,19 +1,19 @@
-div id="newLocationModal" class="modal fade" role="dialog"
-  div class="modal-dialog"
-    div class="modal-content"
-      div class="modal-header"
-        h4 class="modal-title" New Location
-        button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-      div class="modal-body"
-        form role="form" action="/locations" method='post' id='new-location-form'
-          div class="form-group"
-            label for='name_input' Location Name:
-            input type='text' name='name' id='name_input' class="form-control" placeholder="name is required"
-          div class="form-group"
-            label for='description' Location Description:
-            input type='text' name='description' id='description_input' class="form-control" placeholder="description is required"
-          div class="form-group"
-            label for='coordinate' Location Coordinate:
-            input type='text' name='coordinate' id='coordinate_input' class="form-control" placeholder="coordinate is required"
-          button type='submit' id='registration-form-submit' class='submit' value='submit' class="btn btn-primary" Create
-          button type="button" class="btn btn-secondary" data-bs-dismiss="modal" Cancel
+div#newLocationModal.modal.fade role="dialog"
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        h4.modal-title New Location
+        button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+      div.modal-body
+        form#new-location-form role="form" action="/locations" method="post"
+          div.form-group
+            label for="name_input" Location Name:
+            input#name_input.form-control type="text" name="name" placeholder="Name is required" required
+          div.form-group
+            label for="description_input" Location Description:
+            input#description_input.form-control type="text" name="description" placeholder="Description is required" required
+          div.form-group
+            label for="coordinate_input" Location Coordinate:
+            input#coordinate_input.form-control type="text" name="coordinate" placeholder="Coordinate is required" required
+          button#registration-form-submit.btn.btn-primary type="submit" Create
+          button.btn.btn-secondary type="button" data-bs-dismiss="modal" Cancel

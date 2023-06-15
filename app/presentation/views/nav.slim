@@ -1,24 +1,23 @@
-nav.navbar.navbar-expand-lg
+nav.navbar.navbar-expand-lg.navbar-light
   .container-fluid
     a.navbar-brand(href="/") Candyland
     button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarNav
-      ul.navbar-nav.ml-auto.mb-2.mb-lg-0
+      ul.navbar-nav.ml-auto.mb-2.mb-lg-0.justify-content-between.align-items-center
         li.nav-item
-          a.nav-link(href="/")Home
+          a.nav-link(href="/") Home
         li.nav-item
-          a.nav-link(href="/locations")Locations
+          a.nav-link(href="/locations") Locations
         li.nav-item
-          a.nav-link(href="/events")Events
+          a.nav-link(href="/events") Events
         - if @current_account.logged_in?
           li.nav-item
-            a.nav-link(href="/account/#{@current_account.username}")Account
+            a.nav-link(href="/account/#{@current_account.username}") Account
           li.nav-item
-            a.nav-link(href="/auth/logout")Logout
+            a.nav-link(href="/auth/logout") Logout
         - else
           li.nav-item
-            a.nav-link(href="/auth/register")Register
+            a.nav-link(href="/auth/register") Register
           li.nav-item
-            a.nav-link(href="/auth/login")Login
-
+            a.nav-link(href="/auth/login") Login
